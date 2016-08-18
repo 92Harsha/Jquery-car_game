@@ -1,0 +1,151 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+		<title>Benz Ride </title>
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<style>
+		img {
+               position: relative;
+               left: 0;
+               top: 20px;
+            }
+            .map
+            {
+			     background-image: url("/home/msuser1/Desktop/my folders/car game/map.png");
+				 width:1350px;
+				 height:640px;
+				 background-size: 1350px 640px;
+                 background-repeat: no-repeat;
+                 border: 2px solid red;
+			}
+		</style>
+   </head>
+	<body> 
+		<div class="map" onmousemove="showCoords(event)">
+           <img src="/home/msuser1/Desktop/my folders/car game/Car3.png" style="width:125px; height:80px;"></img>
+           <div id="position"></div>
+          </div> 
+	</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script>
+	
+	
+$(document).ready(function() {
+    $(document).keydown(function(key) {
+        switch(parseInt(key.which,10)) {
+			// Left arrow key pressed
+			case 37:
+			      $('img').css("transform","rotate(180deg)");
+				  $('img').animate({left: "-=50px"}, 'fast');
+				break;
+			// Up Arrow Pressed
+			case 38:
+			        $('img').css("transform","rotate(270deg)");
+					$('img').animate({top: "-=50px"}, 'fast');
+				break;
+			// Right Arrow Pressed
+			case 39:
+			        $('img').css("transform","rotate(360deg)");
+					$('img').animate({left: "+=50px"}, 'fast');
+				break;
+			// Down Arrow Pressed
+			case 40:
+			        $('img').css("transform","rotate(90deg)");
+					$('img').animate({top: "+=50px"}, 'fast');
+				break;
+		}
+	});
+});
+
+$(document).ready(function(){
+ $(document).keyup(function(e) {
+                var offset = $('img').offset();
+				var X = (offset.left);
+				var Y = (offset.top);
+				 $('#position').text('X: ' + X + ', Y: ' + Y);
+            if (X >=1250 || Y >=565 || X <= 0 || Y <= 0 )
+            {
+				alert('Game_over');
+				window.location.reload('slow');
+			}  
+			if(X >= 1150 && Y >= 450)
+			{
+				alert('Game Completed');
+			 }
+			 //first window
+			 if(X >140 && X < 600 && Y > 65 && Y < 250) 
+			 {
+				 alert('CRASHED..');
+				 window.location.reload('slow');
+			 }
+			 //second window
+			 if(X >720 && X < 1150 && Y > 100 && Y < 250) 
+			 {
+				 alert('CRASHED..');
+				 window.location.reload('slow');
+			 }
+			 //third window
+			 if(X >140 && X < 600 && Y > 311 && Y < 500) 
+			 {
+				 alert('CRASHED..');
+				 window.location.reload('slow');
+			 }
+			 //fourth window
+			 if(X >720 && X < 1150 && Y > 311 && Y < 500) 
+			 {
+				 alert('CRASHED..');
+				 window.location.reload('slow');
+			 }
+			 //exploding 1
+			 if(X > 660 && X < 820 && Y == 30)
+			 {
+			   $(document).keyup(function(){
+			     $('img').hide('explode');
+			  });
+			 }
+			 //exploding 2
+			  if(X > 680 && X < 700 && Y == 28)
+			 {
+			   $(document).keyup(function(){
+			     $('img').hide('explode');
+			  });
+			 }
+			 //exploding 3
+			  if(X > 193 && X < 250 && Y == 530)
+			 {
+			   $(document).keyup(function(){
+			     $('img').hide('explode');
+			  });
+			 }
+			 //exploding 4
+			  if(X > 1038 && X < 1150 && Y == 280)
+			 {
+			   $(document).keyup(function(){
+			     $('img').hide('explode');
+			  });
+			 }
+        });
+	});
+      $(document).ready(function(){
+		  $(document).keyup(function(){
+             setTimeout(function() {
+                                     alert('Timeout..!');
+                                     window.location.reload('slow');
+                                  }, 10000);
+							  });
+						  });
+						  
+						  
+	
+  </script>
+  
+  <script>
+  function showCoords(event) {
+    var x = event.clientX;
+    var y = event.clientY;
+    var coords = "X coords: " + x + ", Y coords: " + y;
+      $('#position').text('cord: ' + coords + '');
+}
+</script>
